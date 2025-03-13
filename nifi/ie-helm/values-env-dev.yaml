@@ -1,0 +1,3 @@
+envmap:
+  SM_NAME: "'nifi-auth-creds'"
+  SM_REGION: "'ap-south-1'"
