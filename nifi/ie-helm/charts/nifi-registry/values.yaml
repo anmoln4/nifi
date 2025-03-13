@@ -111,8 +111,8 @@ bundleProvider:
     # -- valid credentialProvider values are STATIC, DEFAULT_CHAIN.
     credentialsProvider: STATIC
     # -- If credentialsProvider is STATIC, must specify access key and secret access key
-    accessKey: "AKIAYMHYR7CQF2AMC433"
-    secretAccessKey: "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"
+    accessKey: ""
+    secretAccessKey: ""
     # -- If credentialsProvider is DEFAULT_CHAIN, configure a secret containing AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to mount into nifi registry pod env variables
     accessSecret:
       name: nifi-registry-s3-creds
@@ -272,11 +272,11 @@ oidc:
   # If true, use OIDC for authentication.
   enabled: false
   # URL for NiFi to discover the OIDC provider
-  discoveryUrl: "https://sxdevkeycloak.dryice-aws.com/realms/nifi-registry/.well-known/openid-configuration"
+  discoveryUrl: "<URL>/realms/nifi-registry/.well-known/openid-configuration"
   # Client ID
   clientId: nifi-registry
   # Client Secret
-  clientSecret: "FwJrdlLEXWCHqYUT6iIitxyJ6NgNVH8W"
+  clientSecret: ""
   # OIDC Claim that identifies the user
   claimIdentifyingUser: email
   # OIDC Connection Timeout

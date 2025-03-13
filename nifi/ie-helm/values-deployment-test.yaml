@@ -43,7 +43,7 @@ sts:
     create: true
     name: nifi
     annotations: 
-      eks.amazonaws.com/role-arn: arn:aws:iam::455837570410:role/SX-SXQA-NIFI-DIO-APPROLE
+      eks.amazonaws.com/role-arn: <ARN>
   hostAliases: []
 #    - ip: "1.2.3.4"
 #      hostnames:
@@ -133,8 +133,8 @@ auth:
   # Automaticaly disabled if OIDC or LDAP enabled
   singleUser:
     enabled: false
-    #username: integration_admin@hcl.com
-    #password: #integrationAdmin@Hcl # Must to have at least 12 characters
+    #username: #cdsfe
+    #password: #regreg # Must to have at least 12 characters
 
   clientAuth:
     enabled: false
@@ -155,12 +155,12 @@ auth:
 
   oidc:
     enabled: true
-    discoveryUrl: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_l3s8O2T8m/.well-known/openid-configuration
+    discoveryUrl: 
     #https://<oidc_provider_address>:<oidc_provider_port>/realms/<client_realm>/.well-known/openid-configuration
-    clientId: 37hqibvvmgubkhop568gumfp1
-    clientSecret: 1haqoourr4adj148kha7a996t9u8b626tddo9cc8grcjenvscknn
+    clientId: 
+    clientSecret: 
     claimIdentifyingUser: email
-    admin: ie-admin@hcl.com
+    admin: nifi-admin@hcl.com
     preferredJwsAlgorithm: 
     ## Request additional scopes, for example profile
     additionalScopes:
@@ -213,7 +213,7 @@ service:
   # Enables additional port/ports to nifi service for internal processors
   processors:
     enabled: true
-    host: inttest.dryice-aws.com
+    host: abc.xyz.com
     annotations: 
       nginx.ingress.kubernetes.io/configuration-snippet: >
         add_header Content-Security-Policy "default-src https: data:
@@ -224,7 +224,7 @@ service:
         "nosniff" always;
       nginx.ingress.kubernetes.io/cors-allow-headers: >-
         Strict-Transport-Security,Content-Security-Policy,X-Content-Type-Options,Referrer-Policy,Authorization, X-Frame-Options,User-Agent,Cache-Control,Referer,Permissions-Policy,sec-ch-ua-platform,sec-ch-ua-mobile,sec-ch-ua,DNT,Keep-Alive,X-Requested-With,If-Modified-Since,Content-Type,Range
-      nginx.ingress.kubernetes.io/cors-allow-origin: https://*.gammatest.iecedev.com,https://prod-us.iemphclsw.com,https://ui.iemtraining.iecedev.com,https://ecm.iecedev.com,https://ui.mtaassre.iecedev.com,https://ui.iemuat.iecedev.com,https://ui.iemqa1.iemdevhclsw.com,https://ui.iemdev.iemdevhclsw.com,https://ui.hcliemuat.iemdevhclsw.com,https://ui.iempentest.iemdevhclsw.com,https://ui.iemdast.iemdevhclsw.com,https://ui.iemqaenv.iemdevhclsw.com
+      nginx.ingress.kubernetes.io/cors-allow-origin: https://*.gammatest.abc.com,https://prod-us.xyz.com
       nginx.ingress.kubernetes.io/enable-cors: 'true'
       nginx.ingress.kubernetes.io/proxy-body-size: "10m"
       nginx.ingress.kubernetes.io/proxy-connect-timeout: "1800"
@@ -278,7 +278,7 @@ ingress:
       proxy_set_header 'X-ProxyPort' '443';
     nginx.ingress.kubernetes.io/upstream-vhost: localhost:8443
     nginx.ingress.kubernetes.io/proxy-redirect-from: https://localhost:8443
-    nginx.ingress.kubernetes.io/proxy-redirect-to: https://inttest.dryice-aws.com
+    nginx.ingress.kubernetes.io/proxy-redirect-to: https://abc.xyz.com
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/affinity: cookie
     nginx.ingress.kubernetes.io/affinity-mode: persistent
@@ -289,7 +289,7 @@ ingress:
     nginx.ingress.kubernetes.io/app-root: /nifi
     #cert-manager.io/issuer: ie-test-nifi-ca
   tls: []
-  hosts: ["inttest.dryice-aws.com"]
+  hosts: ["abc.xyz.com"]
   path: /
   # If you want to change the default path, see this issue https://github.com/cetic/helm-nifi/issues/22
 
@@ -540,7 +540,7 @@ registry:
       nginx.ingress.kubernetes.io/proxy-send-timeout: '1800'
       nginx.ingress.kubernetes.io/ssl-redirect: 'true'
     hosts:
-      - host: intregistrytest.dryice-aws.com
+      - host: abc123.xyz.com
         paths: 
           - path: /
             pathType: Prefix
@@ -569,10 +569,10 @@ registry:
       - ie-test-nifi-ca
   oidc:
     enabled: true
-    discoveryUrl: "https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_l3s8O2T8m/.well-known/openid-configuration"
-    clientId: 37hqibvvmgubkhop568gumfp1
-    clientSecret: "1haqoourr4adj148kha7a996t9u8b626tddo9cc8grcjenvscknn"
-    admin: 	ieregistry-admin@hcl.com
+    discoveryUrl: ""
+    clientId: 
+    clientSecret: ""
+    admin: 	
   affinity:
     enabled: true
     key: Env
